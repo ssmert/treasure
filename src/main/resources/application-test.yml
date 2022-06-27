@@ -1,0 +1,26 @@
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    hikari:
+      pool-name: hikari-cp
+      maximum-pool-size: 30
+      minimum-idle: 2
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+    url: jdbc:mysql://localhost:3306/test_db?serverTimezone=UTC&useLegacyDatetimeCode=false&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: rootroot
+  sql:
+    init:
+      # always | embedded | never
+      mode: never
+      data-locations: classpath:data/initialize.sql
+  jpa:
+    hibernate:
+      # create | create-drop | none | update | validate
+      ddl-auto: validate

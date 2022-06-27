@@ -1,0 +1,68 @@
+####################################################################################
+#                                  Common                                          #
+####################################################################################
+server:
+  port: 5656
+  # form data size
+  tomcat:
+    max-http-form-post-size: 20MB
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  error:
+    path: /error
+    # always | never
+    include-stacktrace: never
+    whitelabel.enabled: false
+
+# jasypt encryptor
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+    password: ''
+
+#### Custom ####
+custom:
+  title: "머스트니드(Must Need)"
+  version: "1.0.0"
+  # client timezone <-> utc
+  header:
+    timezone: "TZ"
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+####################################################################################
+#                                    DEFAULT                                       #
+####################################################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+spring:
+  profiles:
+    active: local
+  # swagger 3 path match
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      naming:
+        # [physical] snake case -> camel case
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        # [logical]
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate:
+        format_sql: true
+        enable_lazy_load_no_trans: true
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  session:
+    store-type: jdbc
