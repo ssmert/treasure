@@ -14,7 +14,7 @@ spring:
         useServerPrepStmts: true
     url: jdbc:mysql://localhost:3306/test_db?serverTimezone=UTC&useLegacyDatetimeCode=false&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
     username: root
-    password: rootroot
+    password: ENC(HF+hxWiCW8MoV8X1VKlPrW/r8LDE8PfS)
   sql:
     init:
       # always | embedded | never
