@@ -2,7 +2,6 @@
 #                                  Common                                          #
 ####################################################################################
 server:
-  port: 5656
   # form data size
   tomcat:
     max-http-form-post-size: 20MB
@@ -22,14 +21,6 @@ jasypt:
   encryptor:
     bean: jasyptStringEncryptor
     password: ''
-
-#### Custom ####
-custom:
-  title: "머스트니드(Must Need)"
-  version: "1.0.0"
-  # client timezone <-> utc
-  header:
-    timezone: "TZ"
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ####################################################################################
