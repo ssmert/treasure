@@ -1,4 +1,4 @@
-package com.jakers.mustneed.core.config.entity;
+package com.jakers.mustneed.core.domain;
 
 import com.jakers.mustneed.core.enums.YesOrNo;
 import java.io.Serializable;

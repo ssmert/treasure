@@ -1,4 +1,4 @@
-package com.jakers.mustneed.core.config.dto;
+package com.jakers.mustneed.core.dto;
 
 import lombok.NoArgsConstructor;
 

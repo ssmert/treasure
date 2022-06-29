@@ -1,4 +1,4 @@
-package com.jakers.mustneed.core.config.dto;
+package com.jakers.mustneed.core.dto;
 
 import com.jakers.mustneed.core.enums.YesOrNo;
 import java.time.LocalDateTime;

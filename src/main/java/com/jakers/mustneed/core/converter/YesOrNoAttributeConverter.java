@@ -1,4 +1,4 @@
-package com.jakers.mustneed.core.config.converter;
+package com.jakers.mustneed.core.converter;
 
 import com.jakers.mustneed.core.enums.YesOrNo;
 import javax.persistence.AttributeConverter;

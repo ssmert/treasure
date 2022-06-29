@@ -1,6 +1,6 @@
 package com.jakers.mustneed.core.exception.handler;
 
-import com.jakers.mustneed.core.config.dto.ErrorResponse;
+import com.jakers.mustneed.core.dto.ErrorResponse;
 import com.jakers.mustneed.core.enums.Errors;
 import com.jakers.mustneed.core.exception.BaseRuntimeException;
 import javax.servlet.http.HttpServletResponse;

@@ -1,6 +1,6 @@
 package com.jakers.mustneed.core.config;
 
-import com.jakers.mustneed.core.config.converter.YesOrNoEnumConverter;
+import com.jakers.mustneed.core.converter.YesOrNoEnumConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
