@@ -34,6 +34,11 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
 
+    // junit
+    testImplementation "org.junit.jupiter:junit-jupiter:5.8.2"
+    // Keycloak
+    implementation 'org.keycloak:keycloak-spring-boot-starter:18.0.2'
+    implementation 'org.keycloak:keycloak-admin-client:18.0.2'
     // Lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
@@ -50,6 +55,13 @@ dependencies {
     implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
 }
 
+dependencyManagement {
+    imports {
+        // Keycloak
+        mavenBom "org.keycloak.bom:keycloak-adapter-bom:18.0.2"
+    }
+}
+
 // Querydsl
 def querydslDir = "$buildDir/generated/querydsl"
 
@@ -64,6 +76,6 @@ compileQuerydsl {
     options.annotationProcessorPath = configurations.querydsl
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
 }
