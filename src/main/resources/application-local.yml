@@ -24,3 +24,22 @@ spring:
     hibernate:
       # create | create-drop | none | update | validate
       ddl-auto: create
+
+keycloak:
+  enabled: true
+  realm: mune
+  resource: mune_client
+  auth-server-url: http://localhost:5555/auth
+  ssl-required: external
+  public-client: true
+  credentials:
+    secret: OCCz96t9UL5ylMyjsCBDVoZVdJkYuaLO
+  use-resource-role-mappings: true
+  bearer-only: true
+
+custom:
+  keycloak:
+    username: admin
+    password: qwert12345
+    login-url: ${keycloak.auth-server-url}/realms/${keycloak.realm}/protocol/openid-connect/token
+
