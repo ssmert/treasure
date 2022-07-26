@@ -15,7 +15,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
  */
 @Slf4j
 @Component
-public class LoggingInterceptor implements HandlerInterceptor {
+public class LogInterceptor implements HandlerInterceptor {
 
     // 미출력 URI 목록
     private final List<String> skipUrls = Arrays.asList("/error", "/swagger-ui",

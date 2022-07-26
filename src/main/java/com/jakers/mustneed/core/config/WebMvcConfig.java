@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequiredArgsConstructor
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    private final LoggingInterceptor loggingInterceptor;
+    private final LogInterceptor logInterceptor;
 
     /**
      * 인터셉터 설정
@@ -24,7 +24,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loggingInterceptor).addPathPatterns("/**");
+        registry.addInterceptor(logInterceptor).addPathPatterns("/**");
     }
 
     /**
