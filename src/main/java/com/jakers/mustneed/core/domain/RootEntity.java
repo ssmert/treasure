@@ -18,13 +18,13 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
- * 최상위 도메인 엔터티
+ * 최상위 루트 엔터티
  */
 @Getter
 @MappedSuperclass
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public abstract class DomainEntity implements Serializable {
+public abstract class RootEntity implements Serializable {
 
     // 식별자
     @Id

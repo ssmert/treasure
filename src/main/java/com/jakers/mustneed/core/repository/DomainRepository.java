@@ -1,6 +1,6 @@
 package com.jakers.mustneed.core.repository;
 
-import com.jakers.mustneed.core.domain.DomainEntity;
+import com.jakers.mustneed.core.domain.RootEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
@@ -13,7 +13,7 @@ import org.springframework.data.repository.NoRepositoryBean;
  * @param <IDENTITY> 식별자
  */
 @NoRepositoryBean
-public interface DomainRepository<ENTITY extends DomainEntity, IDENTITY>
+public interface DomainRepository<ENTITY extends RootEntity, IDENTITY>
     extends JpaRepository<ENTITY, IDENTITY>, JpaSpecificationExecutor<ENTITY>,
     QuerydslPredicateExecutor<ENTITY> {
 

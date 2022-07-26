@@ -1,6 +1,6 @@
 package com.jakers.mustneed.account.domain;
 
-import com.jakers.mustneed.core.domain.DomainEntity;
+import com.jakers.mustneed.core.domain.RootEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -22,7 +22,7 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "ACCOUNT", uniqueConstraints = {
     @UniqueConstraint(name = "U_AUTH_ID", columnNames = {"AUTH_ID"})})
-public class Account extends DomainEntity {
+public class Account extends RootEntity {
 
     /**
      * 인증 아이디
