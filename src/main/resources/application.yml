@@ -1,5 +1,5 @@
 ####################################################################################
-#                                  Common                                          #
+#                                      SERVER                                      #
 ####################################################################################
 server:
   # form data size
@@ -16,18 +16,19 @@ server:
     include-stacktrace: never
     whitelabel.enabled: false
 
-# jasypt encryptor
+# jasypt
 jasypt:
   encryptor:
     bean: jasyptStringEncryptor
     password: 'password'
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ####################################################################################
-#                                    DEFAULT                                       #
+#                                      SPRING                                      #
 ####################################################################################
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 spring:
+  application:
+    name: "내가 쓸라고 만듬(Must Need)"
+    version: "1.0.0"
   profiles:
     active: local
   # swagger 3 path match
@@ -36,24 +37,79 @@ spring:
       matching-strategy: ant_path_matcher
   main:
     allow-bean-definition-overriding: true
+  # console ansi print
+  output:
+    ansi:
+      enabled: always
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      pool-name: hikari-cp
+      # mysql-max:100000
+      maximum-pool-size: 10
+      # maintain min pool size
+      minimum-idle: 10
+      # connection idle time(ms)
+      idle-timeout: 600000
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+        useLocalSessionState: true
+        rewriteBatchedStatements: true
+        cacheResultSetMetadata: true
+        cacheServerConfiguration: true
+        elideSetAutoCommits: true
+        maintainTimeStats: false
   jpa:
+    open-in-view: false
+    defer-datasource-initialization: true
     hibernate:
       naming:
-        # [physical] snake case -> camel case
+        # snake case -> camel case
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-        # [logical]
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
     properties:
       hibernate:
+        show_sql: true
         format_sql: true
         enable_lazy_load_no_trans: true
+        order_inserts: true
+        order_updates: true
+        default_batch_fetch_size: 100
+        # batch insert size
+        jdbc:
+          batch_size: 1000
+  batch:
+    jdbc:
+      # always | embedded | never
+      initialize-schema: never
+    job:
+      # Prevent batch execution on application startup
+      enabled: false
   servlet:
     multipart:
       max-file-size: 50MB
       max-request-size: 50MB
   session:
     store-type: jdbc
+
+####################################################################################
+#                                    KEYCLOAK                                      #
+####################################################################################
+keycloak:
+  enabled: true
+  ssl-required: external
+  public-client: true
+  use-resource-role-mappings: true
+  bearer-only: true
+
+####################################################################################
+#                                      CUSTOM                                      #
+####################################################################################
+custom:
+  header:
+    timezone: "TZ"

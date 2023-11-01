@@ -1,18 +1,18 @@
+####################################################################################
+#                                      SERVER                                      #
+####################################################################################
+server:
+  port: 8080
+
+####################################################################################
+#                                      SPRING                                      #
+####################################################################################
 spring:
   config:
     activate:
       on-profile: local
   datasource:
-    hikari:
-      pool-name: hikari-cp
-      maximum-pool-size: 30
-      minimum-idle: 2
-      data-source-properties:
-        cachePrepStmts: true
-        prepStmtCacheSize: 250
-        prepStmtCacheSqlLimit: 2048
-        useServerPrepStmts: true
-    url: jdbc:mysql://localhost:3306/test_db?serverTimezone=UTC&useLegacyDatetimeCode=false&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/must_need_db?serverTimezone=UTC&useLegacyDatetimeCode=false&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: ENC(HF+hxWiCW8MoV8X1VKlPrW/r8LDE8PfS)
   sql:
@@ -25,21 +25,23 @@ spring:
       # create | create-drop | none | update | validate
       ddl-auto: create
 
+####################################################################################
+#                                    KEYCLOAK                                      #
+####################################################################################
 keycloak:
-  enabled: true
-  realm: mune
-  resource: mune_client
-  auth-server-url: http://localhost:5555/auth
-  ssl-required: external
-  public-client: true
+  auth-server-url: "http://localhost:5555/auth"
+  realm: "mune"
+  # client
+  resource: "mune_client-care"
+  # client secret
   credentials:
-    secret: OCCz96t9UL5ylMyjsCBDVoZVdJkYuaLO
-  use-resource-role-mappings: true
-  bearer-only: true
+    secret: "OCCz96t9UL5ylMyjsCBDVoZVdJkYuaLO"
 
+####################################################################################
+#                                      CUSTOM                                      #
+####################################################################################
 custom:
   keycloak:
     username: admin
     password: qwert12345
-    login-url: ${keycloak.auth-server-url}/realms/${keycloak.realm}/protocol/openid-connect/token
-
+    logout-url: ${keycloak.auth-server-url}/realms/${keycloak.realm}/protocol/openid-connect/logout
