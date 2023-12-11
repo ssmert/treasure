@@ -7,27 +7,16 @@ server:
     max-http-form-post-size: 20MB
   servlet:
     encoding:
-      charset: UTF-8
       force: true
-      enabled: true
   error:
-    path: /error
-    # always | never
-    include-stacktrace: never
     whitelabel.enabled: false
-
-# jasypt
-jasypt:
-  encryptor:
-    bean: jasyptStringEncryptor
-    password: 'password'
 
 ####################################################################################
 #                                      SPRING                                      #
 ####################################################################################
 spring:
   application:
-    name: "내가 쓸라고 만듬(Must Need)"
+    name: "Treasure Project"
     version: "1.0.0"
   profiles:
     active: local
@@ -83,33 +72,30 @@ spring:
         # batch insert size
         jdbc:
           batch_size: 1000
-  batch:
-    jdbc:
-      # always | embedded | never
-      initialize-schema: never
-    job:
-      # Prevent batch execution on application startup
-      enabled: false
-  servlet:
-    multipart:
-      max-file-size: 50MB
-      max-request-size: 50MB
-  session:
-    store-type: jdbc
-
-####################################################################################
-#                                    KEYCLOAK                                      #
-####################################################################################
-keycloak:
-  enabled: true
-  ssl-required: external
-  public-client: true
-  use-resource-role-mappings: true
-  bearer-only: true
 
 ####################################################################################
 #                                      CUSTOM                                      #
 ####################################################################################
-custom:
-  header:
-    timezone: "TZ"
+swagger:
+  title: ${spring.application.name}
+  version: ${spring.application.version}
+  description: "My Precious Treasure Collection"
+
+####################################################################################
+#                                     LOGGING                                      #
+####################################################################################
+logging:
+  # TRACE | DEBUG | INFO | WARN | ERROR | FATAL
+  level:
+    # project
+    com.jakers.treasure: INFO
+    # hibernate
+    org.hibernate.SQL: INFO
+    # hibernate query params
+    org.hibernate.type.descriptor.sql.BasicBinder: INFO
+    # hibernate query performance
+    org.hibernate.stat: INFO
+    # hikari CP
+    com.zaxxer.hikari: INFO
+    # jdbc query params
+    org.springframework.jdbc.core.StatementCreatorUtils: INFO

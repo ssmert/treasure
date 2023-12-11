@@ -1,79 +1,50 @@
 plugins {
     id 'java'
     id 'war'
-    id 'org.springframework.boot' version '2.7.1'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+    id 'org.springframework.boot' version '2.7.18-SNAPSHOT'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
 group = 'com.jakers'
-version = '1.0.0'
-sourceCompatibility = '11'
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-    querydsl.extendsFrom compileClasspath
+java {
+    sourceCompatibility = '11'
 }
+
+
+
 
 repositories {
     mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
 }
 
 dependencies {
-    // Spring Boot
+    // spring boot
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
     testImplementation 'org.springframework.security:spring-security-test'
 
-    // junit
-    testImplementation "org.junit.jupiter:junit-jupiter:5.8.2"
-    // Keycloak
-    implementation 'org.keycloak:keycloak-spring-boot-starter:18.0.2'
-    implementation 'org.keycloak:keycloak-admin-client:18.0.2'
-    // Lombok
+    runtimeOnly 'com.mysql:mysql-connector-j'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-    // MySql
-    runtimeOnly 'mysql:mysql-connector-java:8.0.29'
-    // Guava
-    implementation 'com.google.guava:guava:31.1-jre'
-    // Swagger
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
-    // QueryDsl
-    implementation "com.querydsl:querydsl-jpa:5.0.0"
-    implementation "com.querydsl:querydsl-apt:5.0.0"
-    // Jasypt
-    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
-}
-
-dependencyManagement {
-    imports {
-        // Keycloak
-        mavenBom "org.keycloak.bom:keycloak-adapter-bom:18.0.2"
-    }
-}
-
-// Querydsl
-def querydslDir = "$buildDir/generated/querydsl"
-
-querydsl {
-    jpa = true
-    querydslSourcesDir = querydslDir
-}
-sourceSets {
-    main.java.srcDir querydslDir
-}
-compileQuerydsl {
-    options.annotationProcessorPath = configurations.querydsl
+    implementation 'org.apache.commons:commons-lang3'
+    implementation 'com.google.guava:guava:32.1.3-jre'
+    implementation 'com.google.code.gson:gson:2.10.1'
 }
 
 test {
