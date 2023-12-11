@@ -1,4 +1,4 @@
-# [Project] Treasure Server
+# [Project] Treasure
 
 ![Java](https://img.shields.io/badge/Java-11-red.svg)
 ![Gradle](https://img.shields.io/badge/Gradle-8.4-lightgreen.svg)
